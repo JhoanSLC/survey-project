@@ -32,5 +32,5 @@ And also, the user could be an ***ADMIN*** and acces to a ***CRUD*** for each ta
 
 * [x] Initialize github repository.
 * [x] Study a little bit about ***JFrame***.
-* [x] Analize requirements.
+* [x] Analyze requirements.
 * [ ] Create ***DDL***. 
