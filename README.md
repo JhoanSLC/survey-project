@@ -13,11 +13,18 @@ And also, the user could be an ***ADMIN*** and acces to a ***CRUD*** for each ta
 
 ## Requirements
 
-* [x] Use ***hexagonal architecture and vertical slicing*** 
-* [ ] Create ***DDL*** for the database.
-* [ ] Create a ***CRUD*** for each table.
-* [ ] Create a ***UI*** using ***JFrame***.
-* [ ] Create a ***log in ui***.
+* [x] ***hexagonal architecture and vertical slicing*** 
+* [ ] **DDL*** for the database.
+* [ ] ***CRUD*** for each table.
+* [ ] ***UI*** using ***JFrame***.
+* [ ] ***log in ui***.
+* [ ] Register user option.
+* [ ] Common user and Admin user UI.
+* [ ] Show all surveys to the common users.
+* [ ] Permit the admin to access all CRUDS.
+* [ ] Permit a common user to respond whatever survey he wants.
+* [ ] Ask the common user for a category to show the surveys for that category.
+* [ ] Store the user's answers to the database.
 
 <br>
 
