@@ -8,7 +8,7 @@ And also, the user could be an ***ADMIN*** and acces to a ***CRUD*** for each ta
 
 <br>
 
-![Relative](\src\main\resources\dbDiagram.png)
+![Relative](/src/main/resources/dbDiagram.png)
 
 
 ## Requirements
