@@ -45,4 +45,32 @@ And also, the user could be an ***ADMIN*** and acces to a ***CRUD*** for each ta
 * [ ] Create users table's ***CRUD***.
 * [ ] Create users_roles table's ***CRUD***.
 
+<br>
+<br>
 
+## Usefull pieces of code
+
+This class is used to create a connection between Java and mysql
+
+```java
+
+public class DatabaseConnection {
+    final private String URL = "DATABASE'S URL";
+    final private String USER = "MYSQL USER";
+    final private String PASSWORD = "MYSQL PASSWORD";
+
+    public DatabaseConnection() {}
+
+    public Connection connectDatabase(){
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(URL, USER, PASSWORD); 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return con;
+    }
+}
+```
+
+The ***connectDatabse*** method returns a **Connection** type data and with this variable you can work with mysql all within the project.
