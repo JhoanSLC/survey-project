@@ -48,7 +48,7 @@ And also, the user could be an ***ADMIN*** and acces to a ***CRUD*** for each ta
 <br>
 <br>
 
-## Usefull pieces of code
+## Useful pieces of code
 
 This class is used to create a connection between Java and mysql
 
