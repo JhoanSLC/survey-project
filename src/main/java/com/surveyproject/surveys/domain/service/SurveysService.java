@@ -1,4 +1,4 @@
-package com.surveyproject.surveys.service;
+package com.surveyproject.surveys.domain.service;
 
 import java.util.List;
 import java.util.Optional;
