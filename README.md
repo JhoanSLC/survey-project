@@ -14,7 +14,7 @@ And also, the user could be an ***ADMIN*** and acces to a ***CRUD*** for each ta
 ## Requirements
 
 * [x] ***hexagonal architecture and vertical slicing*** 
-* [ ] **DDL*** for the database.
+* [x] **DDL*** for the database.
 * [ ] ***CRUD*** for each table.
 * [ ] ***UI*** using ***JFrame***.
 * [ ] ***log in ui***.
@@ -33,4 +33,16 @@ And also, the user could be an ***ADMIN*** and acces to a ***CRUD*** for each ta
 * [x] Initialize github repository.
 * [x] Study a little bit about ***JFrame***.
 * [x] Analyze requirements.
-* [ ] Create ***DDL***. 
+* [x] Create ***DDL***. 
+* [ ] Create surveys table's ***CRUD***.
+* [ ] Create categories_catalog table's ***CRUD***.
+* [ ] Create chapter table's ***CRUD***.
+* [ ] Create questions table's ***CRUD***.
+* [ ] Create response_options table's ***CRUD***.
+* [ ] Create subResponse_options table's ***CRUD***.
+* [ ] Create response_question table's ***CRUD***.
+* [ ] Create roles table's ***CRUD***.
+* [ ] Create users table's ***CRUD***.
+* [ ] Create users_roles table's ***CRUD***.
+
+
