@@ -50,6 +50,8 @@ And also, the user could be an ***ADMIN*** and acces to a ***CRUD*** for each ta
 
 ## Useful pieces of code
 
+### Java - Mysql connection
+
 This class is used to create a connection between Java and mysql
 
 ```java
@@ -74,3 +76,32 @@ public class DatabaseConnection {
 ```
 
 The ***connectDatabse*** method returns a **Connection** type data and with this variable you can work with mysql all within the project.
+
+--------------------
+
+### Clean terminal
+
+This method is used to clean the terminal
+
+```java
+
+public void clean() {
+
+    try {
+        if (os.contains("Windows")) {
+            // Cleans on windows
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } else {
+            // Cleans on Unix/Linux/Mac
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+```
+
+-------------------------
+
