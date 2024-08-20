@@ -12,8 +12,20 @@ public class ResponseOptions {
     private LocalDateTime updatedAt;
     private String typeComponentHtml;
     private String commentResponse;
-
+    private String optionText;
+    
+    
     public ResponseOptions(){}
+
+    
+    public String getOptionText() {
+        return optionText;
+    }
+
+    public void setOptionText(String optionText) {
+        this.optionText = optionText;
+    }
+
 
     public long getId() {
         return id;
