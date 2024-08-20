@@ -83,20 +83,35 @@ public class SurveysRepository implements SurveysService{
             }
         } catch (Exception e) {
             e.printStackTrace();
+            scr.pause();
         }
         return resultSurveys;
     }
 
     @Override
     public void updateSurveys(Surveys survey) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateSurveys'");
-    }
+        String updateQuery = "UPDATE surveys SET updated_at = NOW(), description = ?, name = ? WHERE id = ?";
+        try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
+            ps.setString(1, survey.getDescription());
+            ps.setString(2, survey.getName());
+            ps.setLong(3, survey.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            scr.pause();
+        }
+}
 
     @Override
     public void deleteSurveys(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteSurveys'");
+        String deleteQuery = "DELETE FROM surveys WHERE id = ?";
+        try (PreparedStatement ps = con.prepareStatement(deleteQuery)){
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            scr.pause();
+        }
     }
 
 }
