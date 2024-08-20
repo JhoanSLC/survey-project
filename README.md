@@ -154,10 +154,9 @@ public Optional<Entity> findById(long id) {
                 // Set the new instance's values with the result of the query
                 entityResult.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
                 entityResult.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
-                entityResult.setDescription(rs.getString("description"));
-                entityResult.setName(rs.getString("name"));
+                entityResult.
                 // At the end, return the optional of the instance of entity
-                return Optional.of(result);
+                return Optional.of(entityResult);
             }
         } catch (Exception e) {
             scr.clean();
@@ -194,7 +193,7 @@ public List<Entity> listAll() {
             Entity entityResult = new Entity();
             entityResult.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
             entityResult.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
-            entityResult.setName(rs.getString("name"));
+            entityResult.
             // Add the new instance to the list
             result.add(entityResult);
         }
@@ -217,11 +216,9 @@ This method is used to modify a field of a specific row from a specific table
 ```java
 // Receive an instance of the entity
 public void update(Entity entity) {
-    String updateQuery = "UPDATE table SET value1 = ?, value2 = ? ... ... ..."
+    String updateQuery = "UPDATE table SET value1 = ?, value2 = ? ... ... ...";
     try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
         // Replace the "?" in the query with the new values
-        ps.setString(1, entity.getDescription());
-        ps.setString(2, entity.getName());
         ps.setLong(3, entity.getId());
         ps.executeUpdate();
     } catch (SQLException e) {

@@ -12,16 +12,16 @@ CREATE TABLE surveys(
 
 CREATE TABLE categoriesCatalog(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    createdAt TIMESTAMP(6),
-    updatedAt TIMESTAMP(6),
+    createdAt TIMESTAMP(6) DEFAULT NOW(),
+    updatedAt TIMESTAMP(6) DEFAULT NOW(),
     name VARCHAR(255)
 );
 
 CREATE TABLE chapter(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    createdAt TIMESTAMP(6),
+    createdAt TIMESTAMP(6) DEFAULT NOW(),
     surveyId INT,
-    updatedAt TIMESTAMP(6),
+    updatedAt TIMESTAMP(6) DEFAULT NOW(),
     chapterNumber VARCHAR(50),
     chapterTitle VARCHAR(50),
     CONSTRAINT Fk_ChapterSurvey FOREIGN KEY (survey_id) REFERENCES surveys(id)
@@ -30,8 +30,8 @@ CREATE TABLE chapter(
 CREATE TABLE questions(
     id INT AUTO_INCREMENT PRIMARY KEY,
     chapterId INT,
-    createdAt TIMESTAMP(6),
-    updatedAt TIMESTAMP(6),
+    createdAt TIMESTAMP(6) DEFAULT NOW(),
+    updatedAt TIMESTAMP(6) DEFAULT NOW(),
     questionNumber VARCHAR(10),
     responseType VARCHAR(20),
     commentQuestion TEXT,
@@ -43,10 +43,10 @@ CREATE TABLE responseOptions(
     id INT AUTO_INCREMENT PRIMARY KEY,
     optionValue INT,
     categoryCatalogId INT,
-    createdAt TIMESTAMP(6),
+    createdAt TIMESTAMP(6) DEFAULT NOW(),
     parentResponseId INT,
     questionId INT,
-    updatedAt TIMESTAMP(6),
+    updatedAt TIMESTAMP(6) DEFAULT NOW(),
     typeComponentHtml VARCHAR(30),
     commentResponse TEXT,
     optionText TEXT,
@@ -58,9 +58,9 @@ CREATE TABLE responseOptions(
 CREATE TABLE subResponseOptions(
     id INT AUTO_INCREMENT PRIMARY KEY,
     subResponseNumber INT,
-    createdAt TIMESTAMP(6),
+    createdAt TIMESTAMP(6) DEFAULT NOW(),
     responseOptionsId INT,
-    updatedAt TIMESTAMP(6),
+    updatedAt TIMESTAMP(6) DEFAULT NOW(),
     componentHtml VARCHAR(255),
     subResponseText VARCHAR(255),
     CONSTRAINT Fk_subResponseParent FOREIGN KEY (responseOptions_id) REFERENCES response_options(id)
