@@ -1,4 +1,4 @@
-package categories_catalog.domain.entity;
+package com.surveyproject.categoriesCatalog.domain.entity;
 
 import java.time.LocalDateTime;
 
