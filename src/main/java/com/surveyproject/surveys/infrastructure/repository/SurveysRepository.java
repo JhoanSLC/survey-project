@@ -22,13 +22,11 @@ public class SurveysRepository implements SurveysService{
 
     @Override
     public void createSurveys(Surveys survey) {
-        String createQuery = "INSERT INTO surveys(created_at,updated_at,description,name) values (?,?,?,?)";
+        String createQuery = "INSERT INTO surveys(created_at,updated_at,description,name) values (NOW(),NOW(),?,?)";
 
         try (PreparedStatement ps = con.prepareStatement(createQuery)){
-            ps.setTimestamp(1, Timestamp.valueOf(survey.getCreated_at()));
-            ps.setTimestamp(2, Timestamp.valueOf(survey.getUpdated_at()));
-            ps.setString(3, survey.getDescription());
-            ps.setString(4, survey.getName());
+            ps.setString(1, survey.getDescription());
+            ps.setString(2, survey.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

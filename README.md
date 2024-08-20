@@ -120,10 +120,8 @@ public void create(Entity entity) {
     // Using preparedStatement to prepare the query
     try (PreparedStatement ps = con.prepareStatement(createQuery)){
         // Insert every value to the prepared query
-        ps.setTimestamp(1, Timestamp.valueOf(survey.getCreatedAt()));
-        ps.setTimestamp(2, Timestamp.valueOf(survey.getUpdatedAt()));
-        ps.setString(3, survey.getDescription());
-        ps.setString(4, survey.getName());
+        ps.setString(1, survey.getDescription());
+        ps.setString(2, survey.getName());
         ps.executeUpdate(); // Once all the query is finished, execute it
     } catch (SQLException e) {
         e.printStackTrace();
@@ -152,12 +150,12 @@ public Optional<Entity> findById(long id) {
             // If the resultSet returns a true (means that something was found and false if not)
             if (rs.next()){
                 // Create a new instance of the entity of this CRUD
-                Entity result = new Entity();
+                Entity entityResult = new Entity();
                 // Set the new instance's values with the result of the query
-                result.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
-                result.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
-                result.setDescription(rs.getString("description"));
-                result.setName(rs.getString("name"));
+                entityResult.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
+                entityResult.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
+                entityResult.setDescription(rs.getString("description"));
+                entityResult.setName(rs.getString("name"));
                 // At the end, return the optional of the instance of entity
                 return Optional.of(result);
             }
@@ -193,12 +191,12 @@ public List<Entity> listAll() {
         // While the resulset is true
         while (rs.next()){
             // Create a new instance of the entity
-            Entity entity = new Entity();
-            entity.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
-            entity.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
-            entity.setName(rs.getString("name"));
+            Entity entityResult = new Entity();
+            entityResult.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
+            entityResult.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
+            entityResult.setName(rs.getString("name"));
             // Add the new instance to the list
-            result.add(survey);
+            result.add(entityResult);
         }
     } catch (Exception e) {
         e.printStackTrace();
