@@ -75,6 +75,7 @@ public class SurveysRepository implements SurveysService{
         try (PreparedStatement ps = con.prepareStatement(listAllQuery); ResultSet rs = ps.executeQuery()){
             while (rs.next()){
                 Surveys survey = new Surveys();
+                survey.setId(rs.getLong("id"));
                 survey.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
                 survey.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
                 survey.setDescription(rs.getString("description"));

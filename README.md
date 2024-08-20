@@ -120,8 +120,8 @@ public void create(Entity entity) {
     // Using preparedStatement to prepare the query
     try (PreparedStatement ps = con.prepareStatement(createQuery)){
         // Insert every value to the prepared query
-        ps.setTimestamp(1, Timestamp.valueOf(survey.getCreated_at()));
-        ps.setTimestamp(2, Timestamp.valueOf(survey.getUpdated_at()));
+        ps.setTimestamp(1, Timestamp.valueOf(survey.getCreatedAt()));
+        ps.setTimestamp(2, Timestamp.valueOf(survey.getUpdatedAt()));
         ps.setString(3, survey.getDescription());
         ps.setString(4, survey.getName());
         ps.executeUpdate(); // Once all the query is finished, execute it
@@ -154,8 +154,8 @@ public Optional<Entity> findById(long id) {
                 // Create a new instance of the entity of this CRUD
                 Entity result = new Entity();
                 // Set the new instance's values with the result of the query
-                result.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
-                result.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
+                result.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
+                result.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
                 result.setDescription(rs.getString("description"));
                 result.setName(rs.getString("name"));
                 // At the end, return the optional of the instance of entity
@@ -194,12 +194,11 @@ public List<Entity> listAll() {
         while (rs.next()){
             // Create a new instance of the entity
             Entity entity = new Entity();
-            entity.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
-            entity.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
-            entity.setDescription(rs.getString("description"));
+            entity.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
+            entity.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
             entity.setName(rs.getString("name"));
             // Add the new instance to the list
-            resultSurveys.add(survey);
+            result.add(survey);
         }
     } catch (Exception e) {
         e.printStackTrace();
