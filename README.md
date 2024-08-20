@@ -211,3 +211,48 @@ public List<Entity> listAll() {
 
 ```
 
+------------------------------------
+
+## Update - CRUD
+
+This method is used to modify a field of a specific row from a specific table
+
+```java
+// Receive an instance of the entity
+public void update(Entity entity) {
+    String updateQuery = "UPDATE table SET value1 = ?, value2 = ? ... ... ..."
+    try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
+        // Replace the "?" in the query with the new values
+        ps.setString(1, entity.getDescription());
+        ps.setString(2, entity.getName());
+        ps.setLong(3, entity.getId());
+        ps.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        scr.pause();
+    }
+}
+
+```
+
+---------------------------------------
+
+## Delete - CRUD
+
+This method is used to delete a specific row from a table
+
+```java
+
+public void delete(long id) {
+    String deleteQuery = "DELETE FROM table WHERE id = ?";
+    try (PreparedStatement ps = con.prepareStatement(deleteQuery)){
+        ps.setLong(1, id);
+        ps.executeUpdate();
+    } catch (Exception e) {
+        e.printStackTrace();
+        scr.pause();
+    }
+}
+
+```
+
