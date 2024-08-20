@@ -120,8 +120,8 @@ public void create(Entity entity) {
     // Using preparedStatement to prepare the query
     try (PreparedStatement ps = con.prepareStatement(createQuery)){
         // Insert every value to the prepared query
-        ps.setString(1, survey.getDescription());
-        ps.setString(2, survey.getName());
+        ps.SETDATA(1, entity.get);
+        ps.SETDATA(2, entity.get);
         ps.executeUpdate(); // Once all the query is finished, execute it
     } catch (SQLException e) {
         e.printStackTrace();
