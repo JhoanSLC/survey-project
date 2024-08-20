@@ -19,7 +19,7 @@ public class ResponseOptionsRepository implements ResponseOptionsService{
     private final ScreenController scr = new ScreenController();
 
     @Override
-    public void createQuestion(ResponseOptions response) {
+    public void createResponse(ResponseOptions response) {
             String createQuery = "INSERT INTO responseOptions(optionValue,categoryCatalogId,parentResponseId,questionId,typeComponentHtml,commentResponse,optionText) values (?,?,?,?,?,?,?)";
         // Using preparedStatement to prepare the query
         try (PreparedStatement ps = con.prepareStatement(createQuery)){
@@ -38,7 +38,7 @@ public class ResponseOptionsRepository implements ResponseOptionsService{
     }
 
     @Override
-    public Optional<ResponseOptions> findQuestionsById(long id) {
+    public Optional<ResponseOptions> findResponseById(long id) {
         String findByIdQuery = "SELECT id,optionValue,categoryCatalogId,createdAt,parentResponseId,questionId,updatedAt,commentResponse,optionText FROM responseOptions WHERE id = ? ";
         // Prepare the query
         try (PreparedStatement ps = con.prepareStatement(findByIdQuery)){
@@ -79,7 +79,7 @@ public class ResponseOptionsRepository implements ResponseOptionsService{
     }
 
     @Override
-    public List<ResponseOptions> listAllQuestions() {
+    public List<ResponseOptions> listAllResponses() {
         String listAllQuery = "SELECT id,optionValue,categoryCatalogId,createdAt,parentResponseId,questionId,updatedAt,commentResponse,optionText FROM responseOptions";
         // Create the list that will store all the rows of a table
         List<ResponseOptions> result = new ArrayList<>();
@@ -109,7 +109,7 @@ public class ResponseOptionsRepository implements ResponseOptionsService{
     }
 
     @Override
-    public void updateQuestions(ResponseOptions response) {
+    public void updateResponse(ResponseOptions response) {
         String updateQuery = "UPDATE responseOptions SET optionValue = ?,categoryCatalogId = ?, parentResponseId = ?, questionId = ?, commentResponse = ?, optionText = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
             // Replace the "?" in the query with the new values
@@ -128,7 +128,7 @@ public class ResponseOptionsRepository implements ResponseOptionsService{
     }
 
     @Override
-    public void deleteQuestions(long id) {
+    public void deleteResponse(long id) {
         String deleteQuery = "DELETE FROM responseOptions WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(deleteQuery)){
             ps.setLong(1, id);

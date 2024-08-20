@@ -5,9 +5,9 @@ import java.util.Optional;
 import java.util.List;
 
 public interface ResponseOptionsService {
-    void createQuestion(ResponseOptions responseOption);
-    Optional<ResponseOptions> findQuestionsById(long id);
-    List<ResponseOptions> listAllQuestions();
-    void updateQuestions(ResponseOptions responseOption);
-    void deleteQuestions(long id);
+    void createResponse(ResponseOptions responseOption);
+    Optional<ResponseOptions> findResponseById(long id);
+    List<ResponseOptions> listAllResponses();
+    void updateResponse(ResponseOptions responseOption);
+    void deleteResponse(long id);
 }

@@ -10,60 +10,60 @@ CREATE TABLE surveys(
     name VARCHAR(255)
 );
 
-CREATE TABLE categoriesCatalog(
+CREATE TABLE categoriesCatalog (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    createdAt TIMESTAMP(6) DEFAULT NOW(),
-    updatedAt TIMESTAMP(6) DEFAULT NOW(),
+    createdAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
+    updatedAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     name VARCHAR(255)
 );
 
 CREATE TABLE chapter(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    createdAt TIMESTAMP(6) DEFAULT NOW(),
+    createdAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
     surveyId INT,
-    updatedAt TIMESTAMP(6) DEFAULT NOW(),
+	updatedAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     chapterNumber VARCHAR(50),
     chapterTitle VARCHAR(50),
-    CONSTRAINT Fk_ChapterSurvey FOREIGN KEY (survey_id) REFERENCES surveys(id)
-)
+    CONSTRAINT Fk_ChapterSurvey FOREIGN KEY (surveyId) REFERENCES surveys(id)
+);
 
 CREATE TABLE questions(
     id INT AUTO_INCREMENT PRIMARY KEY,
     chapterId INT,
-    createdAt TIMESTAMP(6) DEFAULT NOW(),
-    updatedAt TIMESTAMP(6) DEFAULT NOW(),
+    createdAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
+    updatedAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     questionNumber VARCHAR(10),
     responseType VARCHAR(20),
     commentQuestion TEXT,
     questionText TEXT,
-    CONSTRAINT Fk_questionsChapter FOREIGN KEY (chapter_id) REFERENCES chapter(id)
+    CONSTRAINT Fk_questionsChapter FOREIGN KEY (chapterId) REFERENCES chapter(id)
 );
 
 CREATE TABLE responseOptions(
     id INT AUTO_INCREMENT PRIMARY KEY,
     optionValue INT,
     categoryCatalogId INT,
-    createdAt TIMESTAMP(6) DEFAULT NOW(),
+    createdAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
     parentResponseId INT,
     questionId INT,
-    updatedAt TIMESTAMP(6) DEFAULT NOW(),
+    updatedAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     typeComponentHtml VARCHAR(30),
     commentResponse TEXT,
     optionText TEXT,
-    CONSTRAINT Fk_responseCategory FOREIGN KsEY (categoryCatalog_id) REFERENCES categories_catalog(id),
-    CONSTRAINT Fk_responseParent FOREIGN KEY (parentResponse_id) REFERENCES response_options(id),
-    CONSTRAINT Fk_responseQuestion FOREIGN KEY (question_id) REFERENCES questions(id)
+    CONSTRAINT Fk_responseCategory FOREIGN KEY (categoryCatalogId) REFERENCES categoriesCatalog(id),
+    CONSTRAINT Fk_responseParent FOREIGN KEY (parentResponseId) REFERENCES responseOptions(id),
+    CONSTRAINT Fk_responseQuestion FOREIGN KEY (questionId) REFERENCES questions(id)
 );
 
 CREATE TABLE subResponseOptions(
     id INT AUTO_INCREMENT PRIMARY KEY,
     subResponseNumber INT,
-    createdAt TIMESTAMP(6) DEFAULT NOW(),
+    createdAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
     responseOptionsId INT,
-    updatedAt TIMESTAMP(6) DEFAULT NOW(),
+    updatedAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     componentHtml VARCHAR(255),
     subResponseText VARCHAR(255),
-    CONSTRAINT Fk_subResponseParent FOREIGN KEY (responseOptions_id) REFERENCES response_options(id)
+    CONSTRAINT Fk_subResponseParent FOREIGN KEY (responseOptionsId) REFERENCES responseOptions(id)
 );
 
 CREATE TABLE response_question(
@@ -71,13 +71,13 @@ CREATE TABLE response_question(
     responseId INT,
     subResponsesId INT,
     responseText VARCHAR(80),
-    CONSTRAINT Fk_RQresponse FOREIGN KEY (response_id) REFERENCES response_options(id),
-    CONSTRAINT Fk_RQsubResponse FOREIGN KEY (subResponses_id) REFERENCES subResponse_options(id)
+    CONSTRAINT Fk_RQresponse FOREIGN KEY (responseId) REFERENCES responseOptions(id),
+    CONSTRAINT Fk_RQsubResponse FOREIGN KEY (subResponsesId) REFERENCES subResponseOptions(id)
 );
 
 CREATE TABLE roles(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
+    name VARCHAR(255)
 );
 
 CREATE TABLE users(
@@ -90,7 +90,7 @@ CREATE TABLE users(
 CREATE TABLE usersRoles(
     roleId INT,
     userId INT,
-    CONSTRAINT Fk_URrole FOREIGN KEY (role_id) REFERENCES roles(id),
-    CONSTRAINT Fk_URuser FOREIGN KEY (user_id) REFERENCES users(id),
-    CONSTRAINT Pk_UserRoles PRIMARY KEY (role_id,user_id)
+    CONSTRAINT Fk_URrole FOREIGN KEY (roleId) REFERENCES roles(id),
+    CONSTRAINT Fk_URuser FOREIGN KEY (userId) REFERENCES users(id),
+    CONSTRAINT Pk_UserRoles PRIMARY KEY (roleId,userId)
 );
