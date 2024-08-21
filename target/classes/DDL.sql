@@ -82,13 +82,13 @@ CREATE TABLE roles(
 
 CREATE TABLE users(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    enabled BOOLEAN,
+    enabled BOOLEAN DEFAULT 1,
     username VARCHAR(12),
     password VARCHAR(255)
 );
 
 CREATE TABLE usersRoles(
-    roleId INT,
+    roleId INT, 
     userId INT,
     CONSTRAINT Fk_URrole FOREIGN KEY (roleId) REFERENCES roles(id),
     CONSTRAINT Fk_URuser FOREIGN KEY (userId) REFERENCES users(id),
