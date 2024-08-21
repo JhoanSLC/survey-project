@@ -93,19 +93,6 @@ public class UsersRoleRepository implements UsersRoleService {
     }
 
     @Override
-    public void updateUserRole(UsersRoles userRole) {
-        String updateQuery = "UPDATE usersRoles SET roledId = ?, userId = ? WHERE roleId = ? AND userId = ?";
-        try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
-            // Replace the "?" in the query with the new values
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            scr.pause();
-        }
-    }
-
-    @Override
     public void deleteUserrole(long roleId, long userId) {
         String deleteQuery = "DELETE FROM usersRoles WHERE roledId = ? AND userId = ?";
         try (PreparedStatement ps = con.prepareStatement(deleteQuery)){
@@ -119,4 +106,3 @@ public class UsersRoleRepository implements UsersRoleService {
     }
 
 }
-´

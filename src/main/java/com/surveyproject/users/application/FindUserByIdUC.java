@@ -13,6 +13,6 @@ public class FindUserByIdUC {
     }
 
     public Optional<Users> findById(long id){
-        return service.findUserById(id)
+        return service.findUserById(id);
     }
 }

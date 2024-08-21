@@ -4,8 +4,8 @@ USE surveyCampus;
 
 CREATE TABLE surveys(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    created_at TIMESTAMP(6),
-    updated_at TIMESTAMP(6),
+    createdAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
+    updatedAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     description VARCHAR(255),
     name VARCHAR(255)
 );

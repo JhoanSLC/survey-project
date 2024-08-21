@@ -22,7 +22,7 @@ public class SurveysRepository implements SurveysService{
 
     @Override
     public void createSurveys(Surveys survey) {
-        String createQuery = "INSERT INTO surveys(created_at,updated_at,description,name) values (NOW(),NOW(),?,?)";
+        String createQuery = "INSERT INTO surveys(description,name) values (?,?)";
 
         try (PreparedStatement ps = con.prepareStatement(createQuery)){
             ps.setString(1, survey.getDescription());
@@ -36,7 +36,7 @@ public class SurveysRepository implements SurveysService{
 
     @Override
     public Optional<Surveys> findSurveysById(long id) {
-        String findByIdQuery = "SELECT id,created_at,updated_at,description,name FROM surveys WHERE id = ? ";
+        String findByIdQuery = "SELECT id,createdAt,updatedAt,description,name FROM surveys WHERE id = ? ";
 
         try (PreparedStatement ps = con.prepareStatement(findByIdQuery)){
             ps.setLong(1, id);
@@ -44,8 +44,8 @@ public class SurveysRepository implements SurveysService{
             try (ResultSet rs = ps.executeQuery();){
                 if (rs.next()){
                     Surveys resultSurvey = new Surveys();
-                    resultSurvey.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
-                    resultSurvey.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
+                    resultSurvey.setCreated_at(rs.getTimestamp("createdAt").toLocalDateTime());
+                    resultSurvey.setUpdated_at(rs.getTimestamp("updatedAt").toLocalDateTime());
                     resultSurvey.setDescription(rs.getString("description"));
                     resultSurvey.setName(rs.getString("name"));
                     return Optional.of(resultSurvey);
@@ -67,15 +67,15 @@ public class SurveysRepository implements SurveysService{
 
     @Override
     public List<Surveys> listAllSurveys() {
-        String listAllQuery = "SELECT id,created_at,updated_at,description,name FROM surveys";
+        String listAllQuery = "SELECT id,createdAt,updatedAt,description,name FROM surveys";
         List<Surveys> resultSurveys = new ArrayList<>();
 
         try (PreparedStatement ps = con.prepareStatement(listAllQuery); ResultSet rs = ps.executeQuery()){
             while (rs.next()){
                 Surveys survey = new Surveys();
                 survey.setId(rs.getLong("id"));
-                survey.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
-                survey.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
+                survey.setCreated_at(rs.getTimestamp("createdAt").toLocalDateTime());
+                survey.setUpdated_at(rs.getTimestamp("updatedAt").toLocalDateTime());
                 survey.setDescription(rs.getString("description"));
                 survey.setName(rs.getString("name"));
                 resultSurveys.add(survey);
@@ -88,12 +88,12 @@ public class SurveysRepository implements SurveysService{
     }
 
     @Override
-    public void updateSurveys(Surveys survey) {
-        String updateQuery = "UPDATE surveys SET updated_at = NOW(), description = ?, name = ? WHERE id = ?";
+    public void updateSurveys(Surveys survey, long id) {
+        String updateQuery = "UPDATE surveys SET description = ?, name = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
             ps.setString(1, survey.getDescription());
             ps.setString(2, survey.getName());
-            ps.setLong(3, survey.getId());
+            ps.setLong(3, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

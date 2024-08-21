@@ -10,7 +10,7 @@ public class UpdateSurveysUC {
         this.surveysService = survey;
     }
 
-    public void update(Surveys survey){
-        surveysService.updateSurveys(survey);
+    public void update(Surveys survey, long id){
+        surveysService.updateSurveys(survey,id);
     }
 }

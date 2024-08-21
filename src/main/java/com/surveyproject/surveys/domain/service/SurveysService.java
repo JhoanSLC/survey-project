@@ -9,6 +9,6 @@ public interface SurveysService {
     void createSurveys(Surveys survey);
     Optional<Surveys> findSurveysById(long id);
     List<Surveys> listAllSurveys();
-    void updateSurveys(Surveys survey);
+    void updateSurveys(Surveys survey,long id);
     void deleteSurveys(long id);
 }
