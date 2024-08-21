@@ -66,7 +66,7 @@ CREATE TABLE subResponseOptions(
     CONSTRAINT Fk_subResponseParent FOREIGN KEY (responseOptionsId) REFERENCES responseOptions(id)
 );
 
-CREATE TABLE response_question(
+CREATE TABLE responseQuestion(
     id INT AUTO_INCREMENT PRIMARY KEY,
     responseId INT,
     subResponsesId INT,
