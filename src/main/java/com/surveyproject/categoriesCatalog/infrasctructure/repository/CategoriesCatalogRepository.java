@@ -78,8 +78,8 @@ public class CategoriesCatalogRepository implements CategoriesCatalogService {
                 // Create a new instance of the entity
                 CategoriesCatalog entity = new CategoriesCatalog();
                 entity.setId(rs.getLong("id"));
-                entity.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
-                entity.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
+                entity.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
+                entity.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
                 entity.setName(rs.getString("name"));
                 // Add the new instance to the list
                 result.add(entity);

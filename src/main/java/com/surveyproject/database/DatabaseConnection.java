@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DatabaseConnection {
-    final private String URL = "jdbc:mysql://localhost:3306/surveyproject";
+    final private String URL = "jdbc:mysql://localhost:3306/surveycampus";
     final private String USER = "root";
     final private String PASSWORD = "1048065293=)";
 

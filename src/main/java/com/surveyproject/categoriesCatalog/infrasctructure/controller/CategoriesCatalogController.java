@@ -8,8 +8,6 @@ import com.surveyproject.categoriesCatalog.infrasctructure.repository.Categories
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,22 +32,26 @@ public class CategoriesCatalogController extends JFrame {
 
     private void initializeUI() {
         setTitle("Categories Catalog Management");
-        setSize(500, 300);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(2, 3));
+        setLayout(new GridLayout(2, 3, 10, 10)); // Padding between buttons
+        getContentPane().setBackground(new Color(60, 63, 65)); // Background color
 
-        JButton createButton = new JButton("Create Category");
-        JButton findButton = new JButton("Find by ID");
-        JButton listButton = new JButton("List All Categories");
-        JButton updateButton = new JButton("Update Category");
-        JButton deleteButton = new JButton("Delete Category");
+        // Create buttons with styles
+        JButton createButton = createStyledButton("Create Category", new Color(0, 123, 255));
+        JButton findButton = createStyledButton("Find by ID", new Color(40, 167, 69));
+        JButton listButton = createStyledButton("List All Categories", new Color(255, 193, 7));
+        JButton updateButton = createStyledButton("Update Category", new Color(23, 162, 184));
+        JButton deleteButton = createStyledButton("Delete Category", new Color(220, 53, 69));
 
+        // Add buttons to the main window
         add(createButton);
         add(findButton);
         add(listButton);
         add(updateButton);
         add(deleteButton);
 
+        // Add event listeners to each button
         createButton.addActionListener(e -> openCreateWindow());
         findButton.addActionListener(e -> openFindByIdWindow());
         listButton.addActionListener(e -> openListAllWindow());
@@ -59,16 +61,30 @@ public class CategoriesCatalogController extends JFrame {
         setVisible(true);
     }
 
+    private JButton createStyledButton(String text, Color color) {
+        JButton button = new JButton(text);
+        button.setBackground(color);
+        button.setForeground(Color.WHITE);
+        button.setFont(new Font("Arial", Font.BOLD, 16));
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(35, 37, 38), 2), 
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)
+        ));
+        return button;
+    }
+
     private void openCreateWindow() {
         JFrame createFrame = new JFrame("Create Category");
         createFrame.setSize(400, 300);
-        createFrame.setLayout(new GridLayout(4, 2));
+        createFrame.setLayout(new GridLayout(4, 2, 10, 10));
+        createFrame.getContentPane().setBackground(new Color(60, 63, 65));
 
-        JLabel nameLabel = new JLabel("Category Name:");
+        JLabel nameLabel = createStyledLabel("Category Name:");
         JTextField nameField = new JTextField();
 
-        JButton submitButton = new JButton("Create");
-        JButton cancelButton = new JButton("Cancel");
+        JButton submitButton = createStyledButton("Create", new Color(0, 123, 255));
+        JButton cancelButton = createStyledButton("Cancel", new Color(220, 53, 69));
 
         createFrame.add(nameLabel);
         createFrame.add(nameField);
@@ -96,15 +112,19 @@ public class CategoriesCatalogController extends JFrame {
     private void openFindByIdWindow() {
         JFrame findFrame = new JFrame("Find Category by ID");
         findFrame.setSize(400, 200);
-        findFrame.setLayout(new GridLayout(3, 2));
+        findFrame.setLayout(new GridLayout(3, 2, 10, 10));
+        findFrame.getContentPane().setBackground(new Color(60, 63, 65));
 
-        JLabel idLabel = new JLabel("Category ID:");
+        JLabel idLabel = createStyledLabel("Category ID:");
         JTextField idField = new JTextField();
-        JButton submitButton = new JButton("Find");
-        JButton cancelButton = new JButton("Cancel");
+        JButton submitButton = createStyledButton("Find", new Color(40, 167, 69));
+        JButton cancelButton = createStyledButton("Cancel", new Color(220, 53, 69));
 
         JTextArea resultArea = new JTextArea();
         resultArea.setEditable(false);
+        resultArea.setBackground(new Color(43, 43, 43));
+        resultArea.setForeground(Color.WHITE);
+        resultArea.setFont(new Font("Arial", Font.PLAIN, 14));
 
         findFrame.add(idLabel);
         findFrame.add(idField);
@@ -123,7 +143,8 @@ public class CategoriesCatalogController extends JFrame {
                     resultArea.setText(String.format("ID: %d\nName: %s\nCreated At: %s\nUpdated At: %s\n",
                             found.getId(), found.getName(), found.getCreatedAt(), found.getUpdatedAt()));
                 } else {
-                    resultArea.setText("Category not found.");
+                    JOptionPane.showMessageDialog(findFrame, "Category not found.", "Not Found", JOptionPane.WARNING_MESSAGE);
+                    resultArea.setText("");
                 }
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(findFrame, "Invalid ID format", "Error", JOptionPane.ERROR_MESSAGE);
@@ -139,25 +160,34 @@ public class CategoriesCatalogController extends JFrame {
         JFrame listFrame = new JFrame("List All Categories");
         listFrame.setSize(600, 400);
         listFrame.setLayout(new BorderLayout());
+        listFrame.getContentPane().setBackground(new Color(60, 63, 65));
 
         String[] columns = {"ID", "Name", "Created At", "Updated At"};
         DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
         JTable table = new JTable(tableModel);
+        table.setBackground(new Color(43, 43, 43));
+        table.setForeground(Color.WHITE);
+        table.setFont(new Font("Arial", Font.PLAIN, 14));
+        table.setRowHeight(25);
 
         List<CategoriesCatalog> categories = listAllCategoriesUC.listAllSurveys();
-        for (CategoriesCatalog category : categories) {
-            tableModel.addRow(new Object[]{
-                    category.getId(),
-                    category.getName(),
-                    category.getCreatedAt(),
-                    category.getUpdatedAt()
-            });
+        if (categories.isEmpty()) {
+            JOptionPane.showMessageDialog(listFrame, "No categories found.", "Info", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            for (CategoriesCatalog category : categories) {
+                tableModel.addRow(new Object[]{
+                        category.getId(),
+                        category.getName(),
+                        category.getCreatedAt(),
+                        category.getUpdatedAt()
+                });
+            }
         }
 
         JScrollPane scrollPane = new JScrollPane(table);
         listFrame.add(scrollPane, BorderLayout.CENTER);
 
-        JButton closeButton = new JButton("Close");
+        JButton closeButton = createStyledButton("Close", new Color(220, 53, 69));
         closeButton.addActionListener(e -> listFrame.dispose());
 
         listFrame.add(closeButton, BorderLayout.SOUTH);
@@ -168,12 +198,13 @@ public class CategoriesCatalogController extends JFrame {
     private void openUpdateWindow() {
         JFrame idFrame = new JFrame("Enter ID to Update");
         idFrame.setSize(400, 200);
-        idFrame.setLayout(new GridLayout(3, 2));
+        idFrame.setLayout(new GridLayout(3, 2, 10, 10));
+        idFrame.getContentPane().setBackground(new Color(60, 63, 65));
 
-        JLabel idLabel = new JLabel("Category ID:");
+        JLabel idLabel = createStyledLabel("Category ID:");
         JTextField idField = new JTextField();
-        JButton submitButton = new JButton("Next");
-        JButton cancelButton = new JButton("Cancel");
+        JButton submitButton = createStyledButton("Next", new Color(23, 162, 184));
+        JButton cancelButton = createStyledButton("Cancel", new Color(220, 53, 69));
 
         idFrame.add(idLabel);
         idFrame.add(idField);
@@ -190,7 +221,7 @@ public class CategoriesCatalogController extends JFrame {
                     idFrame.dispose();
                     openEditCategoryWindow(foundCategory);
                 } else {
-                    JOptionPane.showMessageDialog(idFrame, "Category not found", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(idFrame, "Category not found", "Not Found", JOptionPane.WARNING_MESSAGE);
                 }
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(idFrame, "Invalid ID format", "Error", JOptionPane.ERROR_MESSAGE);
@@ -205,13 +236,14 @@ public class CategoriesCatalogController extends JFrame {
     private void openEditCategoryWindow(CategoriesCatalog category) {
         JFrame editFrame = new JFrame("Update Category");
         editFrame.setSize(400, 300);
-        editFrame.setLayout(new GridLayout(4, 2));
+        editFrame.setLayout(new GridLayout(4, 2, 10, 10));
+        editFrame.getContentPane().setBackground(new Color(60, 63, 65));
 
-        JLabel nameLabel = new JLabel("Category Name:");
+        JLabel nameLabel = createStyledLabel("Category Name:");
         JTextField nameField = new JTextField(category.getName());
 
-        JButton updateButton = new JButton("Update");
-        JButton cancelButton = new JButton("Cancel");
+        JButton updateButton = createStyledButton("Update", new Color(23, 162, 184));
+        JButton cancelButton = createStyledButton("Cancel", new Color(220, 53, 69));
 
         editFrame.add(nameLabel);
         editFrame.add(nameField);
@@ -238,12 +270,13 @@ public class CategoriesCatalogController extends JFrame {
     private void openDeleteWindow() {
         JFrame deleteFrame = new JFrame("Delete Category");
         deleteFrame.setSize(400, 200);
-        deleteFrame.setLayout(new GridLayout(3, 2));
+        deleteFrame.setLayout(new GridLayout(3, 2, 10, 10));
+        deleteFrame.getContentPane().setBackground(new Color(60, 63, 65));
 
-        JLabel idLabel = new JLabel("Category ID:");
+        JLabel idLabel = createStyledLabel("Category ID:");
         JTextField idField = new JTextField();
-        JButton deleteButton = new JButton("Delete");
-        JButton cancelButton = new JButton("Cancel");
+        JButton deleteButton = createStyledButton("Delete", new Color(220, 53, 69));
+        JButton cancelButton = createStyledButton("Cancel", new Color(23, 162, 184));
 
         deleteFrame.add(idLabel);
         deleteFrame.add(idField);
@@ -264,5 +297,12 @@ public class CategoriesCatalogController extends JFrame {
         cancelButton.addActionListener(e -> deleteFrame.dispose());
 
         deleteFrame.setVisible(true);
+    }
+
+    private JLabel createStyledLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setForeground(Color.WHITE);
+        label.setFont(new Font("Arial", Font.BOLD, 14));
+        return label;
     }
 }
