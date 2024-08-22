@@ -12,8 +12,16 @@ import com.surveyproject.responseOptions.UI.ResponseOptionsUI;
 import com.surveyproject.responseOptions.infrastructure.controller.ResponseOptionsController;
 import com.surveyproject.responseQuestion.UI.ResponseQuestionUI;
 import com.surveyproject.responseQuestion.infrastructure.controller.ResponseQuestionController;
+import com.surveyproject.roles.UI.RolesUI;
+import com.surveyproject.roles.infrastructure.controller.RolesController;
+import com.surveyproject.subResponseOptions.UI.SubResponseOptionsUI;
+import com.surveyproject.subResponseOptions.infrastructure.controller.SubResponseOptionsController;
 import com.surveyproject.surveys.UI.SurveysUI;
 import com.surveyproject.surveys.infrastructure.controller.SurveysController;
+import com.surveyproject.users.UI.UsersUI;
+import com.surveyproject.users.infrastructure.controller.UsersController;
+import com.surveyproject.usersRoles.UI.UsersRolesUI;
+import com.surveyproject.usersRoles.infrastructure.controller.UsersRolesController;
 
 public class InitApplication {
    
@@ -53,5 +61,29 @@ public class InitApplication {
         ResponseQuestionController controller = new ResponseQuestionController();
 
         SwingUtilities.invokeLater(() -> new ResponseQuestionUI(controller));
+    }
+
+    public void initRolesUi(){
+        RolesController controller = new RolesController();
+
+        SwingUtilities.invokeLater(() -> new RolesUI(controller));
+    }
+
+    public void initSubResponseUi(){
+        SubResponseOptionsController controller = new SubResponseOptionsController();
+
+        SwingUtilities.invokeLater(() -> new SubResponseOptionsUI(controller));
+    }
+
+    public void initUsersUi(){
+        UsersController controller = new UsersController();
+
+        SwingUtilities.invokeLater(() -> new UsersUI(controller));
+    }
+
+    public void initUsersRolesUi(){
+        UsersRolesController controller = new UsersRolesController();
+
+        SwingUtilities.invokeLater(() -> new UsersRolesUI(controller));
     }
 }

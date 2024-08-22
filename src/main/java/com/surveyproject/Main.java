@@ -1,11 +1,13 @@
 package com.surveyproject;
 
-import com.surveyproject.initApplication.InitApplication;
+import javax.swing.SwingUtilities;
+
+import com.surveyproject.mainUi.login.LoginUI;
 
 public class Main {
     public static void main(String[] args) {
-        InitApplication initUi = new InitApplication();
-        initUi.initResponseQuestionUi();
+
+        SwingUtilities.invokeLater(() -> new LoginUI());
     }
 
 

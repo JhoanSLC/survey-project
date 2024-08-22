@@ -25,7 +25,7 @@ public class SurveysUI extends JFrame {
         setTitle("Survey Management");
         setSize(800, 600);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Solo cierra la ventana actual
         setLayout(new BorderLayout());
 
         // Menu bar
@@ -35,13 +35,15 @@ public class SurveysUI extends JFrame {
         JMenuItem listSurveysItem = new JMenuItem("List Surveys");
         JMenuItem editSurveyItem = new JMenuItem("Edit Survey");
         JMenuItem deleteSurveyItem = new JMenuItem("Delete Survey");
-        JMenuItem findSurveyItem = new JMenuItem("Find Survey by ID"); 
+        JMenuItem findSurveyItem = new JMenuItem("Find Survey by ID");
+        JMenuItem closeItem = new JMenuItem("Close");
 
         menu.add(createSurveyItem);
         menu.add(listSurveysItem);
         menu.add(editSurveyItem);
         menu.add(deleteSurveyItem);
         menu.add(findSurveyItem);
+        menu.add(closeItem);
         menuBar.add(menu);
         setJMenuBar(menuBar);
 
@@ -83,6 +85,13 @@ public class SurveysUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 findSurveyByIdDialog();
+            }
+        });
+
+        closeItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); 
             }
         });
 

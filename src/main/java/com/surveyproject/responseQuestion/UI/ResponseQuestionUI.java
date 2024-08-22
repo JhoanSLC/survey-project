@@ -36,12 +36,14 @@ public class ResponseQuestionUI extends JFrame {
         JMenuItem editResponseQuestionItem = new JMenuItem("Edit Response Question");
         JMenuItem deleteResponseQuestionItem = new JMenuItem("Delete Response Question");
         JMenuItem findResponseQuestionItem = new JMenuItem("Find Response Question by ID");
+        JMenuItem closeItem = new JMenuItem("Close");
 
         menu.add(createResponseQuestionItem);
         menu.add(listResponseQuestionsItem);
         menu.add(editResponseQuestionItem);
         menu.add(deleteResponseQuestionItem);
         menu.add(findResponseQuestionItem);
+        menu.add(closeItem);
         menuBar.add(menu);
         setJMenuBar(menuBar);
 
@@ -83,6 +85,13 @@ public class ResponseQuestionUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 findResponseQuestionByIdDialog();
+            }
+        });
+
+        closeItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); 
             }
         });
 

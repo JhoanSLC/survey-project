@@ -36,12 +36,14 @@ public class CategoriesCatalogUI extends JFrame {
         JMenuItem editCategoryItem = new JMenuItem("Edit Category");
         JMenuItem deleteCategoryItem = new JMenuItem("Delete Category");
         JMenuItem findCategoryItem = new JMenuItem("Find Category by ID");
-
+        JMenuItem closeItem = new JMenuItem("Close");
+        
         menu.add(createCategoryItem);
         menu.add(listCategoriesItem);
         menu.add(editCategoryItem);
         menu.add(deleteCategoryItem);
         menu.add(findCategoryItem);
+        menu.add(closeItem);
         menuBar.add(menu);
         setJMenuBar(menuBar);
 
@@ -83,6 +85,13 @@ public class CategoriesCatalogUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 findCategoryByIdDialog();
+            }
+        });
+
+        closeItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); 
             }
         });
 

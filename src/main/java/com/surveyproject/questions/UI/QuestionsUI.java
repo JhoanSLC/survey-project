@@ -36,12 +36,14 @@ public class QuestionsUI extends JFrame {
         JMenuItem editQuestionItem = new JMenuItem("Edit Question");
         JMenuItem deleteQuestionItem = new JMenuItem("Delete Question");
         JMenuItem findQuestionItem = new JMenuItem("Find Question by ID");
+        JMenuItem closeItem = new JMenuItem("Close");
 
         menu.add(createQuestionItem);
         menu.add(listQuestionsItem);
         menu.add(editQuestionItem);
         menu.add(deleteQuestionItem);
         menu.add(findQuestionItem);
+        menu.add(closeItem);
         menuBar.add(menu);
         setJMenuBar(menuBar);
 
@@ -83,6 +85,13 @@ public class QuestionsUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 findQuestionByIdDialog();
+            }
+        });
+
+        closeItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); 
             }
         });
 

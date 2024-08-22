@@ -36,12 +36,14 @@ public class ResponseOptionsUI extends JFrame {
         JMenuItem editResponseItem = new JMenuItem("Edit Response");
         JMenuItem deleteResponseItem = new JMenuItem("Delete Response");
         JMenuItem findResponseItem = new JMenuItem("Find Response by ID");
+        JMenuItem closeItem = new JMenuItem("Close");
 
         menu.add(createResponseItem);
         menu.add(listResponsesItem);
         menu.add(editResponseItem);
         menu.add(deleteResponseItem);
         menu.add(findResponseItem);
+        menu.add(closeItem);
         menuBar.add(menu);
         setJMenuBar(menuBar);
 
@@ -85,6 +87,13 @@ public class ResponseOptionsUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 findResponseByIdDialog();
+            }
+        });
+
+        closeItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); 
             }
         });
 

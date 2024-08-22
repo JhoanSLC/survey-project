@@ -9,5 +9,6 @@ public interface UsersRoleService {
     void createUserRole(UsersRoles userRole);
     Optional<UsersRoles> findUserRoleById(long roleId, long userId);
     List<UsersRoles> listAllUserRoles();
+    void updateUserRole(UsersRoles userRole,long userId, long roleId);
     void deleteUserrole(long roleId, long userId);
 }

@@ -36,12 +36,14 @@ public class ChapterUI extends JFrame {
         JMenuItem editChapterItem = new JMenuItem("Edit Chapter");
         JMenuItem deleteChapterItem = new JMenuItem("Delete Chapter");
         JMenuItem findChapterItem = new JMenuItem("Find Chapter by ID");
+        JMenuItem closeItem = new JMenuItem("Close");
 
         menu.add(createChapterItem);
         menu.add(listChaptersItem);
         menu.add(editChapterItem);
         menu.add(deleteChapterItem);
         menu.add(findChapterItem);
+        menu.add(closeItem);
         menuBar.add(menu);
         setJMenuBar(menuBar);
 
@@ -83,6 +85,13 @@ public class ChapterUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 findChapterByIdDialog();
+            }
+        });
+
+        closeItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); 
             }
         });
 

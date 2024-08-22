@@ -105,4 +105,17 @@ public class UsersRoleRepository implements UsersRoleService {
         }
     }
 
+    @Override
+    public void updateUserRole(UsersRoles userRole, long userId, long roleId) {
+        String updateQuery = "UPDATE usersRoles SET roleId = ? WHERE userId = ? AND roleId = ?";
+        try (PreparedStatement ps = con.prepareStatement(updateQuery)){
+            ps.setLong(1, userRole.getRoleId());
+            ps.setLong(2, userId);
+            ps.setLong(3, roleId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
