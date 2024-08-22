@@ -6,25 +6,27 @@ import com.surveyproject.surveys.application.FindSurveysByIdUC;
 import com.surveyproject.surveys.application.ListAllSurveysUC;
 import com.surveyproject.surveys.application.UpdateSurveysUC;
 import com.surveyproject.surveys.domain.entity.Surveys;
+import com.surveyproject.surveys.domain.service.SurveysService;
+import com.surveyproject.surveys.infrastructure.repository.SurveysRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public class SurveysController {
+    private final SurveysService surveysService;
     private final CreateSurveysUC createSurveysUC;
     private final DeleteSurveysUC deleteSurveysUC;
     private final FindSurveysByIdUC findSurveysByIdUC;
     private final ListAllSurveysUC listAllSurveysUC;
     private final UpdateSurveysUC updateSurveysUC;
 
-    public SurveysController(CreateSurveysUC createSurveysUC, DeleteSurveysUC deleteSurveysUC, 
-                             FindSurveysByIdUC findSurveysByIdUC, ListAllSurveysUC listAllSurveysUC, 
-                             UpdateSurveysUC updateSurveysUC) {
-        this.createSurveysUC = createSurveysUC;
-        this.deleteSurveysUC = deleteSurveysUC;
-        this.findSurveysByIdUC = findSurveysByIdUC;
-        this.listAllSurveysUC = listAllSurveysUC;
-        this.updateSurveysUC = updateSurveysUC;
+    public SurveysController() {
+        this.surveysService = new SurveysRepository();
+        this.createSurveysUC = new CreateSurveysUC(surveysService);
+        this.deleteSurveysUC = new DeleteSurveysUC(surveysService);
+        this.findSurveysByIdUC = new FindSurveysByIdUC(surveysService);
+        this.listAllSurveysUC = new ListAllSurveysUC(surveysService);
+        this.updateSurveysUC = new UpdateSurveysUC(surveysService);
     }
 
     public void createSurvey(Surveys survey) {

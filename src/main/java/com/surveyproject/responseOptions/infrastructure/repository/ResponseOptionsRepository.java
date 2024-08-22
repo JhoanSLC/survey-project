@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import com.surveyproject.database.DatabaseConnection;
 import com.surveyproject.responseOptions.domain.entity.ResponseOptions;
@@ -26,7 +27,11 @@ public class ResponseOptionsRepository implements ResponseOptionsService{
             // Insert every value to the prepared query
             ps.setInt(1, response.getOptionValue());
             ps.setLong(2, response.getCategoryCatalogId());
-            ps.setLong(3,response.getParentResponseId());
+            if (response.getParentResponseId() == 0){
+                ps.setNull(3, Types.NULL);
+            } else {
+                ps.setLong(3,response.getParentResponseId());
+            }
             ps.setLong(4,response.getQuestionId());
             ps.setString(5,response.getTypeComponentHtml());
             ps.setString(6,response.getCommentResponse());
@@ -115,7 +120,11 @@ public class ResponseOptionsRepository implements ResponseOptionsService{
             // Replace the "?" in the query with the new values
             ps.setInt(1,response.getOptionValue());
             ps.setLong(2,response.getCategoryCatalogId());
-            ps.setLong(3,response.getParentResponseId());
+            if (response.getParentResponseId() == 0){
+                ps.setNull(3, Types.NULL);
+            } else {
+                ps.setLong(3,response.getParentResponseId());
+            }
             ps.setLong(4,response.getQuestionId());
             ps.setString(5,response.getCommentResponse());
             ps.setString(6,response.getOptionText());

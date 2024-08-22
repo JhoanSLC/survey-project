@@ -39,7 +39,7 @@ public class QuestionsRepository implements QuestionsService {
 
     @Override
     public Optional<Questions> findQuestionsById(long id) {
-        String findByIdQuery = "SELECT id,chapterId,createdAd,updatedAd,questionNumber,responseType,commentQuestions,questionText FROM questions WHERE id = ? ";
+        String findByIdQuery = "SELECT id,chapterId,createdAt,updatedAt,questionNumber,responseType,commentQuestion,questionText FROM questions WHERE id = ? ";
         // Prepare the query
         try (PreparedStatement ps = con.prepareStatement(findByIdQuery)){
             // Set the id typed by the user into the WHERE statement
@@ -79,7 +79,7 @@ public class QuestionsRepository implements QuestionsService {
 
     @Override
     public List<Questions> listAllQuestions() {
-        String listAllQuery = "SELECT id,chapterId,createdAd,updatedAd,questionNumber,responseType,commentQuestions,questionText FROM questions";
+        String listAllQuery = "SELECT id,chapterId,createdAt,updatedAt,questionNumber,responseType,commentQuestion,questionText FROM questions";
         // Create the list that will store all the rows of a table
         List<Questions> result = new ArrayList<>();
         // Prepare statement and store the result of the execute query in a ResultSet type variable

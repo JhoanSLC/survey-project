@@ -3,47 +3,55 @@ package com.surveyproject.initApplication;
 import javax.swing.SwingUtilities;
 
 import com.surveyproject.categoriesCatalog.UI.CategoriesCatalogUI;
-import com.surveyproject.categoriesCatalog.application.CreateCategoryUC;
-import com.surveyproject.categoriesCatalog.application.DeleteCategoryUC;
-import com.surveyproject.categoriesCatalog.application.FindCategoryByIdUC;
-import com.surveyproject.categoriesCatalog.application.ListAllCategoriesUC;
-import com.surveyproject.categoriesCatalog.application.UpdateCategoryUC;
 import com.surveyproject.categoriesCatalog.infrasctructure.controller.CategoriesCatalogController;
-import com.surveyproject.categoriesCatalog.infrasctructure.repository.CategoriesCatalogRepository;
+import com.surveyproject.chapter.UI.ChapterUI;
+import com.surveyproject.chapter.infrastructure.controller.ChapterController;
+import com.surveyproject.questions.UI.QuestionsUI;
+import com.surveyproject.questions.infrastructure.controller.QuestionsController;
+import com.surveyproject.responseOptions.UI.ResponseOptionsUI;
+import com.surveyproject.responseOptions.infrastructure.controller.ResponseOptionsController;
+import com.surveyproject.responseQuestion.UI.ResponseQuestionUI;
+import com.surveyproject.responseQuestion.infrastructure.controller.ResponseQuestionController;
 import com.surveyproject.surveys.UI.SurveysUI;
-import com.surveyproject.surveys.application.CreateSurveysUC;
-import com.surveyproject.surveys.application.DeleteSurveysUC;
-import com.surveyproject.surveys.application.FindSurveysByIdUC;
-import com.surveyproject.surveys.application.ListAllSurveysUC;
-import com.surveyproject.surveys.application.UpdateSurveysUC;
 import com.surveyproject.surveys.infrastructure.controller.SurveysController;
-import com.surveyproject.surveys.infrastructure.repository.SurveysRepository;
 
 public class InitApplication {
    
     public InitApplication(){}
 
     public void initSurveyUi(){
-        SurveysController controller = new SurveysController(
-            new CreateSurveysUC(new SurveysRepository()),
-            new DeleteSurveysUC(new SurveysRepository()),
-            new FindSurveysByIdUC(new SurveysRepository()),
-            new ListAllSurveysUC(new SurveysRepository()),
-            new UpdateSurveysUC(new SurveysRepository())
-        );
+        SurveysController controller = new SurveysController();
 
         SwingUtilities.invokeLater(() -> new SurveysUI(controller));
     }
 
     public void initCategoryUi(){
-        CategoriesCatalogController controller = new CategoriesCatalogController(
-            new CreateCategoryUC(new CategoriesCatalogRepository()),
-            new DeleteCategoryUC(new CategoriesCatalogRepository()),
-            new FindCategoryByIdUC(new CategoriesCatalogRepository()),
-            new ListAllCategoriesUC(new CategoriesCatalogRepository()),
-            new UpdateCategoryUC(new CategoriesCatalogRepository())
-        );
+        CategoriesCatalogController controller = new CategoriesCatalogController();
 
         SwingUtilities.invokeLater(() -> new CategoriesCatalogUI(controller));
+    }
+
+    public void initChapterUi() {
+        ChapterController controller = new ChapterController();
+
+        SwingUtilities.invokeLater(() -> new ChapterUI(controller));
+    }
+
+    public void initQuestionsUI(){
+        QuestionsController controller = new QuestionsController();
+
+        SwingUtilities.invokeLater(() -> new QuestionsUI(controller));
+    }
+
+    public void initReponseOptionsUi(){
+        ResponseOptionsController controller = new ResponseOptionsController();
+
+        SwingUtilities.invokeLater(() -> new ResponseOptionsUI(controller));
+    }
+
+    public void initResponseQuestionUi(){
+        ResponseQuestionController controller = new ResponseQuestionController();
+
+        SwingUtilities.invokeLater(() -> new ResponseQuestionUI(controller));
     }
 }

@@ -6,25 +6,27 @@ import com.surveyproject.categoriesCatalog.application.FindCategoryByIdUC;
 import com.surveyproject.categoriesCatalog.application.ListAllCategoriesUC;
 import com.surveyproject.categoriesCatalog.application.UpdateCategoryUC;
 import com.surveyproject.categoriesCatalog.domain.entity.CategoriesCatalog;
+import com.surveyproject.categoriesCatalog.domain.service.CategoriesCatalogService;
+import com.surveyproject.categoriesCatalog.infrasctructure.repository.CategoriesCatalogRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public class CategoriesCatalogController {
+    private final CategoriesCatalogService service;
     private final CreateCategoryUC createCategoryUC;
     private final DeleteCategoryUC deleteCategoryUC;
     private final FindCategoryByIdUC findCategoryByIdUC;
     private final ListAllCategoriesUC listAllCategoriesUC;
     private final UpdateCategoryUC updateCategoryUC;
 
-    public CategoriesCatalogController(CreateCategoryUC createCategoryUC, DeleteCategoryUC deleteCategoryUC, 
-                                        FindCategoryByIdUC findCategoryByIdUC, ListAllCategoriesUC listAllCategoriesUC, 
-                                        UpdateCategoryUC updateCategoryUC) {
-        this.createCategoryUC = createCategoryUC;
-        this.deleteCategoryUC = deleteCategoryUC;
-        this.findCategoryByIdUC = findCategoryByIdUC;
-        this.listAllCategoriesUC = listAllCategoriesUC;
-        this.updateCategoryUC = updateCategoryUC;
+    public CategoriesCatalogController(){
+        this.service = new CategoriesCatalogRepository();
+        this.createCategoryUC = new CreateCategoryUC(service);
+        this.deleteCategoryUC = new DeleteCategoryUC(service);
+        this.findCategoryByIdUC = new FindCategoryByIdUC(service);
+        this.listAllCategoriesUC = new ListAllCategoriesUC(service);
+        this.updateCategoryUC = new UpdateCategoryUC(service);
     }
 
     public void createCategory(CategoriesCatalog category) {
