@@ -96,14 +96,14 @@ public class ResponseQuestionRepository implements ResponseQuestionService{
     }
 
     @Override
-    public void updateResponseQuestion(ResponseQuestion responseQuestion) {
+    public void updateResponseQuestion(ResponseQuestion responseQuestion, long id) {
         String updateQuery = "UPDATE responseQuestion SET responseId = ?,subResponsesId = ?,responseText = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
             // Replace the "?" in the query with the new values
             ps.setLong(1, responseQuestion.getResponseId());
             ps.setLong(2, responseQuestion.getSubResponsesId());
             ps.setString(3, responseQuestion.getResponseText());
-            ps.setLong(4, responseQuestion.getId());
+            ps.setLong(4, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

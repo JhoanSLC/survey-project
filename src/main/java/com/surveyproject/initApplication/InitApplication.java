@@ -2,6 +2,14 @@ package com.surveyproject.initApplication;
 
 import javax.swing.SwingUtilities;
 
+import com.surveyproject.categoriesCatalog.UI.CategoriesCatalogUI;
+import com.surveyproject.categoriesCatalog.application.CreateCategoryUC;
+import com.surveyproject.categoriesCatalog.application.DeleteCategoryUC;
+import com.surveyproject.categoriesCatalog.application.FindCategoryByIdUC;
+import com.surveyproject.categoriesCatalog.application.ListAllCategoriesUC;
+import com.surveyproject.categoriesCatalog.application.UpdateCategoryUC;
+import com.surveyproject.categoriesCatalog.infrasctructure.controller.CategoriesCatalogController;
+import com.surveyproject.categoriesCatalog.infrasctructure.repository.CategoriesCatalogRepository;
 import com.surveyproject.surveys.UI.SurveysUI;
 import com.surveyproject.surveys.application.CreateSurveysUC;
 import com.surveyproject.surveys.application.DeleteSurveysUC;
@@ -25,5 +33,17 @@ public class InitApplication {
         );
 
         SwingUtilities.invokeLater(() -> new SurveysUI(controller));
+    }
+
+    public void initCategoryUi(){
+        CategoriesCatalogController controller = new CategoriesCatalogController(
+            new CreateCategoryUC(new CategoriesCatalogRepository()),
+            new DeleteCategoryUC(new CategoriesCatalogRepository()),
+            new FindCategoryByIdUC(new CategoriesCatalogRepository()),
+            new ListAllCategoriesUC(new CategoriesCatalogRepository()),
+            new UpdateCategoryUC(new CategoriesCatalogRepository())
+        );
+
+        SwingUtilities.invokeLater(() -> new CategoriesCatalogUI(controller));
     }
 }

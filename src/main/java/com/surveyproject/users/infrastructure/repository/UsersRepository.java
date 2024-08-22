@@ -96,14 +96,14 @@ public class UsersRepository implements UserService {
     }
 
     @Override
-    public void updateUser(Users user) {
+    public void updateUser(Users user,long id) {
         String updateQuery = "UPDATE users SET enabled = ?, username = ?, password = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
             // Replace the "?" in the query with the new values
             ps.setBoolean(1, user.getEnabled());
             ps.setString(2, user.getUsername());
             ps.setString(3,user.getPassword());
-            ps.setLong(4, user.getId());
+            ps.setLong(4, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

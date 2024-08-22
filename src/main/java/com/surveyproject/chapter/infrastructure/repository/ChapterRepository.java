@@ -99,13 +99,14 @@ public class ChapterRepository implements ChapterService {
     }
 
     @Override
-    public void updateChapters(Chapter chapter) {
-        String updateQuery = "UPDATE chapter SET surveyId = ?, updatedAt = NOW(), chapterNumber = ?, chapterTitle = ?";
+    public void updateChapters(Chapter chapter,long id) {
+        String updateQuery = "UPDATE chapter SET surveyId = ?, updatedAt = NOW(), chapterNumber = ?, chapterTitle = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
             // Replace the "?" in the query with the new values
             ps.setLong(1, chapter.getSurveyId());
             ps.setString(2, chapter.getChapterNumber());
             ps.setString(3, chapter.getChapterTitle());
+            ps.setLong(4, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

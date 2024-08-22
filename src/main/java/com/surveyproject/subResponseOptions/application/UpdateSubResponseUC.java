@@ -10,7 +10,7 @@ public class UpdateSubResponseUC {
         this.service = newService;
     }
 
-    public void update(SubResponseOptions subResponse){
-        service.updateSubResponse(subResponse);
+    public void update(SubResponseOptions subResponse,long id){
+        service.updateSubResponse(subResponse,id);
     }
 }

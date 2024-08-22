@@ -101,14 +101,14 @@ public class SubResponseRepository implements SubResponseService {
     }
     
     @Override
-    public void updateSubResponse(SubResponseOptions subResponse) {
+    public void updateSubResponse(SubResponseOptions subResponse,long id) {
         String updateQuery = "UPDATE subResponseOptions SET subResponseNumber = ?, responseOptionsId = ?, subResponseText = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
             // Replace the "?" in the query with the new values
             ps.setInt(1, subResponse.getSubResponseNumber());
             ps.setLong(2, subResponse.getResponseOptionsId());
             ps.setString(3,subResponse.getSubResponseText());
-            ps.setLong(4, subResponse.getId());
+            ps.setLong(4, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

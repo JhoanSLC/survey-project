@@ -9,6 +9,6 @@ public interface SubResponseService {
     void createSubResponse(SubResponseOptions subResponse);
     Optional<SubResponseOptions> findSubResponseById(long id);
     List<SubResponseOptions> listAllSubResponses();
-    void updateSubResponse(SubResponseOptions subResponse);
+    void updateSubResponse(SubResponseOptions subResponse, long id);
     void deleteSubResponse(long id);
 }

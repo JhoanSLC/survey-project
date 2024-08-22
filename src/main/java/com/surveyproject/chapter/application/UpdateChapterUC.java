@@ -10,8 +10,8 @@ public class UpdateChapterUC {
         this.chapterService = chapterService;
     }
 
-    public void update(Chapter chapter){
-        chapterService.updateChapters(chapter);
+    public void update(Chapter chapter,long id){
+        chapterService.updateChapters(chapter,id);
     }
 
 }

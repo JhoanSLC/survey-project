@@ -10,7 +10,7 @@ public class UpdateQuestionUC {
         this.questionS = questionS;
     }
 
-    public void update(Questions question){
-        questionS.updateQuestions(question);
+    public void update(Questions question, long id){
+        questionS.updateQuestions(question,id);
     }
 }

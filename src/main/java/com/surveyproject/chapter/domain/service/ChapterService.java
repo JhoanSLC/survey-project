@@ -9,6 +9,6 @@ public interface ChapterService {
     void createChapters(Chapter chapter);
     Optional<Chapter> findChaptersById(long id);
     List<Chapter> listAllChapter();
-    void updateChapters(Chapter chapter);
+    void updateChapters(Chapter chapter,long id);
     void deleteChapters(long id);
 }

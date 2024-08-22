@@ -10,7 +10,7 @@ public class UpdateRoleUC {
         this.service = service;
     }
 
-    public void update(Roles role){
-        service.updateRole(role);
+    public void update(Roles role, long id){
+        service.updateRole(role,id);
     }
 }

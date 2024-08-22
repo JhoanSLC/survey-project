@@ -92,12 +92,12 @@ public class CategoriesCatalogRepository implements CategoriesCatalogService {
     }
 
     @Override
-    public void updateCategories(CategoriesCatalog category) {
+    public void updateCategories(CategoriesCatalog category, long id) {
         String updateQuery = "UPDATE categoriesCatalog SET updatedAt = NOW(), name = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
             // Replace the "?" in the query with the new values
             ps.setString(1, category.getName());
-            ps.setLong(2, category.getId());
+            ps.setLong(2, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

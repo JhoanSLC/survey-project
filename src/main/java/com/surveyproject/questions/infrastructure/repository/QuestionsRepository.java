@@ -107,7 +107,7 @@ public class QuestionsRepository implements QuestionsService {
     }
 
     @Override
-    public void updateQuestions(Questions question) {
+    public void updateQuestions(Questions question,long id) {
         String updateQuery = "UPDATE questions SET chapterId = ?, updatedAt = NOW(), questionNumber = ?,responseType = ?, commentQuestion = ?, questionText = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
             // Replace the "?" in the query with the new values
@@ -116,7 +116,7 @@ public class QuestionsRepository implements QuestionsService {
             ps.setString(3, question.getResponseType());
             ps.setString(4,question.getCommentQuestion());
             ps.setString(5, question.getQuestionText());
-            ps.setLong(6, question.getId());
+            ps.setLong(6, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

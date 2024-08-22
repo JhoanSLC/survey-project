@@ -10,8 +10,8 @@ public class UpdateCategoryUC {
         this.category = category;
     }
 
-    public void update(CategoriesCatalog categoryCatalog){
-        category.updateCategories(categoryCatalog);
+    public void update(CategoriesCatalog categoryCatalog, long id){
+        category.updateCategories(categoryCatalog,id);
     }
 
 }

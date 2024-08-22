@@ -10,7 +10,7 @@ public class UpdateResponseQuestionUC {
         this.service = newService;
     }
 
-    public void update(ResponseQuestion responseQuestion){
-        service.updateResponseQuestion(responseQuestion);
+    public void update(ResponseQuestion responseQuestion, long id){
+        service.updateResponseQuestion(responseQuestion,id);
     }
 }

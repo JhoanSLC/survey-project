@@ -90,12 +90,12 @@ public class RolesRepository implements RoleService{
     }
 
     @Override
-    public void updateRole(Roles role) {
+    public void updateRole(Roles role,long id) {
         String updateQuery = "UPDATE roles SET name = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
             // Replace the "?" in the query with the new values
             ps.setString(1, role.getName());
-            ps.setLong(2, role.getId());
+            ps.setLong(2, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

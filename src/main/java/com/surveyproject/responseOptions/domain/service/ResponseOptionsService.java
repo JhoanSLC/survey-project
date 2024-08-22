@@ -8,6 +8,6 @@ public interface ResponseOptionsService {
     void createResponse(ResponseOptions responseOption);
     Optional<ResponseOptions> findResponseById(long id);
     List<ResponseOptions> listAllResponses();
-    void updateResponse(ResponseOptions responseOption);
+    void updateResponse(ResponseOptions responseOption,long id);
     void deleteResponse(long id);
 }

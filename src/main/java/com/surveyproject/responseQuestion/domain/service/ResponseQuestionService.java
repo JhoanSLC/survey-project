@@ -9,6 +9,6 @@ public interface ResponseQuestionService {
     void createResponseQuestions(ResponseQuestion responseQuestion);
     Optional<ResponseQuestion> findResponseQuestionById(long id);
     List<ResponseQuestion> listAllResponseQuestions();
-    void updateResponseQuestion(ResponseQuestion responseQuestion);
+    void updateResponseQuestion(ResponseQuestion responseQuestion, long id);
     void deleteResponseQuestion(long id);
 }

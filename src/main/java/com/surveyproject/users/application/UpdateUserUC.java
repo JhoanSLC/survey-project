@@ -10,7 +10,7 @@ public class UpdateUserUC {
         this.service = service;
     }
 
-    public void update(Users user){
-        service.updateUser(user);
+    public void update(Users user, long id){
+        service.updateUser(user,id);
     }
 }

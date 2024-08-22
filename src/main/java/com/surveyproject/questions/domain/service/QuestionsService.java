@@ -10,6 +10,6 @@ public interface QuestionsService {
     void createQuestion(Questions question);
     Optional<Questions> findQuestionsById(long id);
     List<Questions> listAllQuestions();
-    void updateQuestions(Questions question);
+    void updateQuestions(Questions question,long id);
     void deleteQuestions(long id);
 }

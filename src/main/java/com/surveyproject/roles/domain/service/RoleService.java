@@ -9,6 +9,6 @@ public interface RoleService {
     void createRole(Roles role);
     Optional<Roles> findRoleById(long id);
     List<Roles> listAllRoles();
-    void updateRole(Roles role);
+    void updateRole(Roles role,long id);
     void deleteRole(long id);
 }

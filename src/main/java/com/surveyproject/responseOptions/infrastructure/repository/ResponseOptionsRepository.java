@@ -109,7 +109,7 @@ public class ResponseOptionsRepository implements ResponseOptionsService{
     }
 
     @Override
-    public void updateResponse(ResponseOptions response) {
+    public void updateResponse(ResponseOptions response,long id) {
         String updateQuery = "UPDATE responseOptions SET optionValue = ?,categoryCatalogId = ?, parentResponseId = ?, questionId = ?, commentResponse = ?, optionText = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(updateQuery)) {
             // Replace the "?" in the query with the new values
@@ -119,7 +119,7 @@ public class ResponseOptionsRepository implements ResponseOptionsService{
             ps.setLong(4,response.getQuestionId());
             ps.setString(5,response.getCommentResponse());
             ps.setString(6,response.getOptionText());
-            ps.setLong(7, response.getId());
+            ps.setLong(7, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

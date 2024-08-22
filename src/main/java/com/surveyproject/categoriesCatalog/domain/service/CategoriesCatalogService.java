@@ -9,6 +9,6 @@ public interface CategoriesCatalogService {
     void createCategories(CategoriesCatalog category);
     Optional<CategoriesCatalog> finCategoriesById(long id);
     List<CategoriesCatalog> listAllCategories();
-    void updateCategories(CategoriesCatalog category);
+    void updateCategories(CategoriesCatalog category, long id);
     void deleteCategories(long id);
 }
