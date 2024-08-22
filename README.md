@@ -15,7 +15,7 @@ And also, the user could be an ***ADMIN*** and acces to a ***CRUD*** for each ta
 
 * [x] ***hexagonal architecture and vertical slicing*** 
 * [x] **DDL*** for the database.
-* [ ] ***CRUD*** for each table.
+* [x] ***CRUD*** for each table.
 * [ ] ***UI*** using ***JFrame***.
 * [ ] ***log in ui***.
 * [ ] Register user option.
@@ -34,16 +34,18 @@ And also, the user could be an ***ADMIN*** and acces to a ***CRUD*** for each ta
 * [x] Study a little bit about ***JFrame***.
 * [x] Analyze requirements.
 * [x] Create ***DDL***. 
-* [ ] Create surveys table's ***CRUD***.
-* [ ] Create categories_catalog table's ***CRUD***.
-* [ ] Create chapter table's ***CRUD***.
-* [ ] Create questions table's ***CRUD***.
-* [ ] Create response_options table's ***CRUD***.
-* [ ] Create subResponse_options table's ***CRUD***.
-* [ ] Create response_question table's ***CRUD***.
-* [ ] Create roles table's ***CRUD***.
-* [ ] Create users table's ***CRUD***.
-* [ ] Create users_roles table's ***CRUD***.
+* [x] Create surveys table's ***CRUD***.
+* [x] Create categories_catalog table's ***CRUD***.
+* [x] Create chapter table's ***CRUD***.
+* [x] Create questions table's ***CRUD***.
+* [x] Create response_options table's ***CRUD***.
+* [x] Create subResponse_options table's ***CRUD***.
+* [x] Create response_question table's ***CRUD***.
+* [x] Create roles table's ***CRUD***.
+* [x] Create users table's ***CRUD***.
+* [x] Create users_roles table's ***CRUD***.
+* [ ] Create UI for each ***CRUD***.
+* [ ] Display surveys for common users.
 
 <br>
 <br>

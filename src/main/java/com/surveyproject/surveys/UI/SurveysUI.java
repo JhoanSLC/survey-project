@@ -1,4 +1,4 @@
-package com.surveyproject.UI;
+package com.surveyproject.surveys.UI;
 
 import com.surveyproject.surveys.domain.entity.Surveys;
 import com.surveyproject.surveys.infrastructure.controller.SurveysController;
@@ -35,13 +35,13 @@ public class SurveysUI extends JFrame {
         JMenuItem listSurveysItem = new JMenuItem("List Surveys");
         JMenuItem editSurveyItem = new JMenuItem("Edit Survey");
         JMenuItem deleteSurveyItem = new JMenuItem("Delete Survey");
-        JMenuItem findSurveyItem = new JMenuItem("Find Survey by ID"); // Nuevo ítem para buscar por ID
+        JMenuItem findSurveyItem = new JMenuItem("Find Survey by ID"); 
 
         menu.add(createSurveyItem);
         menu.add(listSurveysItem);
         menu.add(editSurveyItem);
         menu.add(deleteSurveyItem);
-        menu.add(findSurveyItem); // Añadido al menú
+        menu.add(findSurveyItem);
         menuBar.add(menu);
         setJMenuBar(menuBar);
 

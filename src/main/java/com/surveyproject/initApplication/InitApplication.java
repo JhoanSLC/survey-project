@@ -2,7 +2,7 @@ package com.surveyproject.initApplication;
 
 import javax.swing.SwingUtilities;
 
-import com.surveyproject.UI.SurveysUI;
+import com.surveyproject.surveys.UI.SurveysUI;
 import com.surveyproject.surveys.application.CreateSurveysUC;
 import com.surveyproject.surveys.application.DeleteSurveysUC;
 import com.surveyproject.surveys.application.FindSurveysByIdUC;
