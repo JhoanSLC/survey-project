@@ -21,7 +21,7 @@ public class LoginUI {
     public LoginUI() {
         frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 200);
+        frame.setSize(400, 250); // Aumenta el tamaño de la ventana
         frame.setLayout(new GridLayout(4, 2));
 
         JLabel usernameLabel = new JLabel("Username:");
@@ -52,6 +52,7 @@ public class LoginUI {
             }
         });
 
+        frame.setLocationRelativeTo(null); // Centra la ventana en la pantalla
         frame.setVisible(true);
     }
 

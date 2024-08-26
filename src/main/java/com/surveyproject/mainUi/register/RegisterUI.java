@@ -1,9 +1,7 @@
 package com.surveyproject.mainUi.register;
 
 import javax.swing.*;
-
 import com.surveyproject.database.DatabaseConnection;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,13 +13,12 @@ public class RegisterUI {
     private JFrame frame;
     private JTextField usernameField;
     private JPasswordField passwordField;
-    private JTextField roleIdField;
     private DatabaseConnection databaseConnection = new DatabaseConnection();
 
     public RegisterUI() {
         frame = new JFrame("Register");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(300, 200);
+        frame.setSize(400, 250); // Aumenta el tamaño de la ventana
         frame.setLayout(new GridLayout(4, 2));
 
         JLabel usernameLabel = new JLabel("Username:");
@@ -44,6 +41,7 @@ public class RegisterUI {
             }
         });
 
+        frame.setLocationRelativeTo(null); // Centra la ventana en la pantalla
         frame.setVisible(true);
     }
 
