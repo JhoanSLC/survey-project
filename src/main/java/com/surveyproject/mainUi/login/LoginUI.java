@@ -4,6 +4,7 @@ import javax.swing.*;
 import com.surveyproject.database.DatabaseConnection;
 import com.surveyproject.mainUi.adminUi.AdminUI;
 import com.surveyproject.mainUi.register.RegisterUI;
+import com.surveyproject.mainUi.userUi.SurveyMenuUI; // Asegúrate de tener esta clase en el paquete correcto
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,8 +22,9 @@ public class LoginUI {
     public LoginUI() {
         frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 200);
+        frame.setSize(430, 300);
         frame.setLayout(new GridLayout(4, 2));
+        frame.setResizable(false);
 
         JLabel usernameLabel = new JLabel("Username:");
         usernameField = new JTextField();
@@ -30,7 +32,6 @@ public class LoginUI {
         passwordField = new JPasswordField();
         JButton loginButton = new JButton("Login");
         JButton registerButton = new JButton("Register");
-
         frame.add(usernameLabel);
         frame.add(usernameField);
         frame.add(passwordLabel);
@@ -52,6 +53,7 @@ public class LoginUI {
             }
         });
 
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
@@ -76,9 +78,11 @@ public class LoginUI {
                         if (roleId == 2) {
                             JOptionPane.showMessageDialog(frame, "Welcome, Admin!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
                             SwingUtilities.invokeLater(() -> new AdminUI().setVisible(true));
-                        } else {
+                        } else if (roleId == 1) {
                             JOptionPane.showMessageDialog(frame, "Welcome, User!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
-                            // Open User Menu or Dashboard
+                            SwingUtilities.invokeLater(() -> new SurveyMenuUI().setVisible(true)); // Open survey menu
+                        } else {
+                            JOptionPane.showMessageDialog(frame, "Access denied", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                         frame.dispose();
                     } else {
@@ -93,7 +97,6 @@ public class LoginUI {
     }
 
     private void handleRegister() {
-        // Open registration form
         SwingUtilities.invokeLater(() -> new RegisterUI());
     }
 }
