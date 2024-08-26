@@ -7,7 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class RegisterUI {
     private JFrame frame;
@@ -18,7 +20,7 @@ public class RegisterUI {
     public RegisterUI() {
         frame = new JFrame("Register");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(400, 250); // Aumenta el tamaño de la ventana
+        frame.setSize(430, 300);
         frame.setLayout(new GridLayout(4, 2));
 
         JLabel usernameLabel = new JLabel("Username:");
@@ -43,6 +45,7 @@ public class RegisterUI {
 
         frame.setLocationRelativeTo(null); // Centra la ventana en la pantalla
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 
     private void handleRegister() {
@@ -56,11 +59,25 @@ public class RegisterUI {
 
         try (Connection con = databaseConnection.connectDatabase()) {
             String query = "INSERT INTO users (username, password) VALUES (?, ?)";
-            try (PreparedStatement ps = con.prepareStatement(query)) {
+            try (PreparedStatement ps = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ps.executeUpdate();
-                JOptionPane.showMessageDialog(frame, "User registered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                ResultSet generatedId = ps.getGeneratedKeys();
+                if (generatedId.next()){
+                    String insertUserRole = "INSERT INTO usersRoles (roleId,userId) VALUES (1,?)";
+                    try (PreparedStatement stm = con.prepareStatement(insertUserRole)){
+                        
+                        stm.setLong(1,generatedId.getLong(1));
+                        stm.executeUpdate();
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    JOptionPane.showMessageDialog(frame, "User registered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+              
+                
                 frame.dispose();
             }
         } catch (SQLException e) {
