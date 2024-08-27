@@ -5,6 +5,8 @@ import com.surveyproject.database.DatabaseConnection;
 import com.surveyproject.mainUi.adminUi.AdminUI;
 import com.surveyproject.mainUi.register.RegisterUI;
 import com.surveyproject.mainUi.userUi.SurveyMenuUI; // Asegúrate de tener esta clase en el paquete correcto
+import com.surveyproject.mainUi.userUi.UserOptionsUI;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,7 +82,7 @@ public class LoginUI {
                             SwingUtilities.invokeLater(() -> new AdminUI().setVisible(true));
                         } else if (roleId == 1) {
                             JOptionPane.showMessageDialog(frame, "Welcome, User!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
-                            SwingUtilities.invokeLater(() -> new SurveyMenuUI().setVisible(true)); // Open survey menu
+                            SwingUtilities.invokeLater(() -> new UserOptionsUI().setVisible(true)); // Open survey menu
                         } else {
                             JOptionPane.showMessageDialog(frame, "Access denied", "Error", JOptionPane.ERROR_MESSAGE);
                         }

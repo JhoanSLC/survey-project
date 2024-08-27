@@ -4,10 +4,9 @@ import com.surveyproject.database.DatabaseConnection;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
+
 
 public class SurveyMenuUI extends JFrame {
     private DatabaseConnection databaseConnection;
@@ -45,7 +44,11 @@ public class SurveyMenuUI extends JFrame {
         add(categoryPanel);
 
         nextButton.addActionListener(e -> showSurveySelection());
-        backButton.addActionListener(e -> dispose()); // Back to previous screen (login screen)
+        backButton.addActionListener(e -> {
+            SurveyMainUI mainUI = new SurveyMainUI();
+            mainUI.setVisible(true);
+            dispose(); // Volver a la pantalla principal
+        });
     }
 
     private void showSurveySelection() {
@@ -252,9 +255,5 @@ public class SurveyMenuUI extends JFrame {
 
     private void removeCurrentPanel() {
         getContentPane().removeAll();
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new SurveyMenuUI().setVisible(true));
     }
 }
